@@ -1,0 +1,10 @@
+pandas>=2.0
+numpy
+pyarrow
+scikit-learn
+lightgbm
+matplotlib
+joblib
+duckdb
+pyyaml
+pytest

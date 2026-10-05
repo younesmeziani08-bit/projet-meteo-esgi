@@ -1,0 +1,46 @@
+# Data contract (Open Data Contract Standard) — couche Bronze
+apiVersion: v3.0.2
+kind: DataContract
+id: esgi-meteo-bronze-v2-journaliere
+name: Bronze - séries journalières Infoclimat v2
+version: 0.1.0
+status: draft
+domain: meteo
+dataProduct: prevision-court-terme
+description:
+  purpose: Copie brute et traçable des réponses de l'API /v2/journaliere, socle des couches Silver et Gold.
+  limitations: Granularité journalière uniquement (l'horaire nécessite un jeton). Données de J-1 disponibles à partir de 08:00 UTC.
+  usage: Ne pas consommer directement ; passer par la couche Silver.
+servers:
+  - server: infoclimat-api
+    type: https
+    location: https://climato.chom.engineering/v2/journaliere
+  - server: local-bronze
+    type: local
+    path: data/bronze/v2_journaliere/{ic_id}/page_*.json
+    format: json
+schema:
+  - name: v2_journaliere
+    physicalType: json
+    description: Une ligne par station et par jour (champ "mesures" des réponses).
+    properties:
+      - {name: ic_id, logicalType: string, required: true, description: Identifiant canonique de la station}
+      - {name: mfid, logicalType: string, description: Numéro de poste Météo-France (NUM_POSTE)}
+      - {name: date, logicalType: date, required: true}
+      - {name: tn, logicalType: number, unit: "°C", description: Température minimale}
+      - {name: tx, logicalType: number, unit: "°C", description: Température maximale}
+      - {name: tm, logicalType: number, unit: "°C", description: "(tn + tx) / 2"}
+      - {name: tntxm, logicalType: number, unit: "°C", description: "Doublon de tm renvoyé par l'API"}
+      - {name: rr, logicalType: number, unit: mm, description: Cumul de précipitations}
+      - {name: n_obs, logicalType: integer, description: Nombre d'observations du jour}
+      - {name: n_obs_rejetees, logicalType: integer, description: Observations rejetées par le contrôle qualité}
+      - {name: statut_extremes, logicalType: string, description: "quotidien | partiel | releve_unique | null"}
+    quality:
+      - {type: sql, description: "Clé unique (ic_id, date)", query: "SELECT COUNT(*) FROM (SELECT ic_id, date FROM v2_journaliere GROUP BY ic_id, date HAVING COUNT(*) > 1)", mustBe: 0}
+      - {type: sql, description: Températures plausibles, query: "SELECT COUNT(*) FROM v2_journaliere WHERE tn < -50 OR tx > 50", mustBe: 0}
+      - {type: sql, description: tn <= tx, query: "SELECT COUNT(*) FROM v2_journaliere WHERE tn > tx", mustBe: 0}
+slaProperties:
+  - {property: frequency, value: 1, unit: d}
+  - {property: latency, value: 1, unit: d, description: "J-1 disponible à 08:00 UTC"}
+team:
+  - {username: younes.meziani, role: owner}

@@ -1,0 +1,16 @@
+# Données (régénérées par ./run_pipeline.sh, ~126 Mo)
+data/
+
+# Modèles et sorties volumineuses (régénérés par src/train_models.py)
+models/
+results/_partiel/
+results/predictions_test.parquet
+results/train.log
+
+# Python / outils
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+.venv/
+.DS_Store

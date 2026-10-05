@@ -1,0 +1,72 @@
+{
+ "tx_h1": {
+  "ridge_alpha": 100.0,
+  "lgb_leaves": 31,
+  "lgb_arbres": 311
+ },
+ "tx_h2": {
+  "ridge_alpha": 0.1,
+  "lgb_leaves": 15,
+  "lgb_arbres": 290
+ },
+ "tx_h3": {
+  "ridge_alpha": 0.1,
+  "lgb_leaves": 15,
+  "lgb_arbres": 189
+ },
+ "tx_h4": {
+  "ridge_alpha": 0.1,
+  "lgb_leaves": 15,
+  "lgb_arbres": 221
+ },
+ "tx_h5": {
+  "ridge_alpha": 0.1,
+  "lgb_leaves": 15,
+  "lgb_arbres": 273
+ },
+ "tx_h6": {
+  "ridge_alpha": 0.1,
+  "lgb_leaves": 15,
+  "lgb_arbres": 213
+ },
+ "tx_h7": {
+  "ridge_alpha": 0.1,
+  "lgb_leaves": 31,
+  "lgb_arbres": 106
+ },
+ "tn_h1": {
+  "ridge_alpha": 100.0,
+  "lgb_leaves": 63,
+  "lgb_arbres": 289
+ },
+ "tn_h2": {
+  "ridge_alpha": 100.0,
+  "lgb_leaves": 15,
+  "lgb_arbres": 314
+ },
+ "tn_h3": {
+  "ridge_alpha": 100.0,
+  "lgb_leaves": 31,
+  "lgb_arbres": 255
+ },
+ "tn_h4": {
+  "ridge_alpha": 100.0,
+  "lgb_leaves": 15,
+  "lgb_arbres": 168
+ },
+ "tn_h5": {
+  "ridge_alpha": 100.0,
+  "lgb_leaves": 15,
+  "lgb_arbres": 165
+ },
+ "tn_h6": {
+  "ridge_alpha": 100.0,
+  "lgb_leaves": 15,
+  "lgb_arbres": 240
+ },
+ "tn_h7": {
+  "ridge_alpha": 10.0,
+  "lgb_leaves": 15,
+  "lgb_arbres": 154
+ }
+}

@@ -1,0 +1,64 @@
+# Data contract (Open Data Contract Standard) — couche Silver
+apiVersion: v3.0.2
+kind: DataContract
+id: esgi-meteo-silver-journaliere
+name: Silver - météo journalière nettoyée
+version: 0.1.0
+status: draft
+domain: meteo
+dataProduct: prevision-court-terme
+description:
+  purpose: Table de référence propre, une ligne par station et par jour, calendrier complet, avec traçabilité des corrections.
+  limitations: >
+    La climatologie utilisée pour le contrôle spatial est calculée sur toute la période ;
+    elle ne sert qu'au contrôle qualité et ne doit pas être réutilisée comme variable d'entrée en Gold
+    (risque de fuite d'information du futur).
+  usage: Source unique de la couche Gold. Utiliser tn/tx/tm/rr (nettoyés) ; *_brut uniquement pour l'audit.
+servers:
+  - server: local-silver
+    type: local
+    path: data/silver/meteo_journaliere.parquet
+    format: parquet
+schema:
+  - name: meteo_journaliere
+    physicalType: table
+    properties:
+      - {name: ic_id, logicalType: string, required: true, primaryKey: true, primaryKeyPosition: 1}
+      - {name: date, logicalType: date, required: true, primaryKey: true, primaryKeyPosition: 2}
+      - {name: mfid, logicalType: string}
+      - {name: libelle, logicalType: string}
+      - {name: latitude, logicalType: number}
+      - {name: longitude, logicalType: number}
+      - {name: altitude, logicalType: number, unit: m}
+      - {name: departement, logicalType: string}
+      - {name: tn, logicalType: number, unit: "°C", description: Minimale nettoyée (vide si valide = false)}
+      - {name: tx, logicalType: number, unit: "°C", description: Maximale nettoyée (vide si valide = false)}
+      - {name: tm, logicalType: number, unit: "°C", description: "(tn + tx) / 2 recalculée"}
+      - {name: rr, logicalType: number, unit: mm, description: Précipitations nettoyées}
+      - {name: tn_brut, logicalType: number, unit: "°C", description: Valeur Bronze inchangée}
+      - {name: tx_brut, logicalType: number, unit: "°C", description: Valeur Bronze inchangée}
+      - {name: rr_brut, logicalType: number, unit: mm, description: Valeur Bronze inchangée}
+      - {name: tn_clim, logicalType: number, unit: "°C", description: Climatologie lissée ±15 j (contrôle qualité uniquement)}
+      - {name: tx_clim, logicalType: number, unit: "°C", description: Climatologie lissée ±15 j (contrôle qualité uniquement)}
+      - {name: tn_score_spatial, logicalType: number, description: Écart robuste à l'anomalie médiane des autres stations}
+      - {name: tx_score_spatial, logicalType: number, description: Écart robuste à l'anomalie médiane des autres stations}
+      - {name: n_obs, logicalType: integer}
+      - {name: n_obs_rejetees, logicalType: integer}
+      - {name: statut_extremes, logicalType: string}
+      - {name: flag_absent, logicalType: boolean, description: Jour absent ou tn/tx vide}
+      - {name: flag_hors_bornes, logicalType: boolean, description: "tn hors [-35, 35] ou tx hors [-25, 47] °C"}
+      - {name: flag_incoherent, logicalType: boolean, description: tn > tx}
+      - {name: flag_spatial, logicalType: boolean, description: "|score spatial| > 10"}
+      - {name: flag_rr_invalide, logicalType: boolean, description: "rr < 0 ou > 1000 mm (n'invalide que rr)"}
+      - {name: flag_partiel, logicalType: boolean, description: Journée incomplète (informatif, n'invalide pas)}
+      - {name: valide, logicalType: boolean, required: true, description: Aucune des règles d'invalidation de tn/tx n'est vraie}
+    quality:
+      - {type: sql, description: Clé unique, query: "SELECT COUNT(*) FROM (SELECT ic_id, date FROM meteo_journaliere GROUP BY ic_id, date HAVING COUNT(*) > 1)", mustBe: 0}
+      - {type: sql, description: Calendrier complet par station, query: "SELECT COUNT(*) FROM (SELECT ic_id FROM meteo_journaliere GROUP BY ic_id HAVING COUNT(DISTINCT date) <> datediff('day', MIN(date), MAX(date)) + 1)", mustBe: 0}
+      - {type: sql, description: Valeurs nettoyées cohérentes, query: "SELECT COUNT(*) FROM meteo_journaliere WHERE tn > tx", mustBe: 0}
+      - {type: sql, description: Pas de valeur nettoyée sur une ligne invalide, query: "SELECT COUNT(*) FROM meteo_journaliere WHERE NOT valide AND (tn IS NOT NULL OR tx IS NOT NULL)", mustBe: 0}
+      - {type: sql, description: Taux de validité minimal par station, query: "SELECT MIN(avg_valide) FROM (SELECT AVG(CAST(valide AS INT)) AS avg_valide FROM meteo_journaliere GROUP BY ic_id)", mustBeGreaterThan: 0.99}
+slaProperties:
+  - {property: frequency, value: 1, unit: d}
+team:
+  - {username: younes.meziani, role: owner}

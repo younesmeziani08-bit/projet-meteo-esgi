@@ -1,0 +1,46 @@
+# Data contract (Open Data Contract Standard) — couche Gold
+apiVersion: v3.0.2
+kind: DataContract
+id: esgi-meteo-gold-jeu-prevision
+name: Gold - jeu d'apprentissage pour la prévision tn/tx à J+1..J+7
+version: 0.1.0
+status: draft
+domain: meteo
+dataProduct: prevision-court-terme
+description:
+  purpose: >
+    Jeu d'apprentissage chronologique prêt à l'emploi : une ligne par station et date d'origine J,
+    variables construites uniquement à partir des données disponibles à J, cibles tn/tx à J+1..J+7,
+    et prévisions de référence (persistance, climatologie) pour l'évaluation.
+  limitations: >
+    Granularité journalière. Climatologie apprise sur 2000-2021 : elle sous-estime le réchauffement récent
+    (biais attendu sur valid/test). Les lignes split = purge ne doivent jamais servir à l'apprentissage ni à l'évaluation.
+  usage: >
+    Apprendre sur split = train, régler les hyperparamètres sur valid, évaluer une seule fois sur test.
+    Pour l'horizon h, ignorer les lignes où cible_*_h{h} est vide.
+servers:
+  - server: local-gold
+    type: local
+    path: data/gold/jeu_prevision.parquet
+    format: parquet
+schema:
+  - name: jeu_prevision
+    physicalType: table
+    description: Liste complète des colonnes dans data/gold/dictionnaire_variables.csv
+    properties:
+      - {name: ic_id, logicalType: string, required: true, primaryKey: true, primaryKeyPosition: 1}
+      - {name: date, logicalType: date, required: true, primaryKey: true, primaryKeyPosition: 2, description: Date d'origine J de la prévision}
+      - {name: split, logicalType: string, required: true, description: "train (≤ 2021-12-24) | valid (2022-01-01 … 2023-12-24) | test (≥ 2024-01-01) | purge"}
+      - {name: "tn, tx, tm, rr, *_lag{k}, *_moy{w}, *_anom, ...", logicalType: number, description: "79 variables d'entrée, toutes calculées avec des données ≤ J"}
+      - {name: "cible_{tn|tx}_h{1..7}", logicalType: number, unit: "°C", description: Valeur observée (Silver nettoyé) à J+h}
+      - {name: "base_persistance_{tn|tx}_h{1..7}", logicalType: number, unit: "°C", description: "Prévision naïve : valeur de J"}
+      - {name: "base_clim_{tn|tx}_h{1..7}", logicalType: number, unit: "°C", description: Climatologie train du jour J+h}
+    quality:
+      - {type: sql, description: Clé unique, query: "SELECT COUNT(*) FROM (SELECT ic_id, date FROM jeu_prevision GROUP BY ic_id, date HAVING COUNT(*) > 1)", mustBe: 0}
+      - {type: custom, description: "Pas de fuite : recalculer le jeu sur des données tronquées à T ne modifie aucune variable des lignes date ≤ T (testé avec T = 2024-06-30)", mustBe: 0}
+      - {type: custom, description: "Les cibles des lignes train (resp. valid) tombent toutes avant 2021-12-31 (resp. 2023-12-31)", mustBe: true}
+      - {type: custom, description: "climatologie_train.parquet recalculée sur les seules données ≤ 2021-12-31 est identique", mustBe: true}
+slaProperties:
+  - {property: frequency, value: 1, unit: d, description: Recalcul après chaque mise à jour Silver}
+team:
+  - {username: younes.meziani, role: owner}
