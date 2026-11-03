@@ -1,0 +1,871 @@
+
+===== EXECUTION PLAN (gold) =====
+== Physical Plan ==
+AdaptiveSparkPlan (117)
++- Project (116)
+   +- BroadcastHashJoin LeftOuter BuildRight (115)
+      :- Project (109)
+      :  +- Window (108)
+      :     +- Project (107)
+      :        +- BroadcastHashJoin LeftOuter BuildRight (106)
+      :           :- Project (100)
+      :           :  +- Window (99)
+      :           :     +- Project (98)
+      :           :        +- BroadcastHashJoin LeftOuter BuildRight (97)
+      :           :           :- Project (91)
+      :           :           :  +- Window (90)
+      :           :           :     +- Project (89)
+      :           :           :        +- BroadcastHashJoin LeftOuter BuildRight (88)
+      :           :           :           :- Project (82)
+      :           :           :           :  +- Window (81)
+      :           :           :           :     +- Project (80)
+      :           :           :           :        +- BroadcastHashJoin LeftOuter BuildRight (79)
+      :           :           :           :           :- Project (73)
+      :           :           :           :           :  +- Window (72)
+      :           :           :           :           :     +- Project (71)
+      :           :           :           :           :        +- BroadcastHashJoin LeftOuter BuildRight (70)
+      :           :           :           :           :           :- Project (64)
+      :           :           :           :           :           :  +- Window (63)
+      :           :           :           :           :           :     +- Project (62)
+      :           :           :           :           :           :        +- BroadcastHashJoin LeftOuter BuildRight (61)
+      :           :           :           :           :           :           :- Project (55)
+      :           :           :           :           :           :           :  +- Window (54)
+      :           :           :           :           :           :           :     +- Sort (53)
+      :           :           :           :           :           :           :        +- Exchange (52)
+      :           :           :           :           :           :           :           +- Project (51)
+      :           :           :           :           :           :           :              +- Window (50)
+      :           :           :           :           :           :           :                 +- Sort (49)
+      :           :           :           :           :           :           :                    +- Exchange (48)
+      :           :           :           :           :           :           :                       +- Project (47)
+      :           :           :           :           :           :           :                          +- Window (46)
+      :           :           :           :           :           :           :                             +- Project (45)
+      :           :           :           :           :           :           :                                +- Window (44)
+      :           :           :           :           :           :           :                                   +- Sort (43)
+      :           :           :           :           :           :           :                                      +- Exchange (42)
+      :           :           :           :           :           :           :                                         +- Project (41)
+      :           :           :           :           :           :           :                                            +- BroadcastHashJoin LeftOuter BuildRight (40)
+      :           :           :           :           :           :           :                                               :- Project (2)
+      :           :           :           :           :           :           :                                               :  +- Scan parquet  (1)
+      :           :           :           :           :           :           :                                               +- BroadcastExchange (39)
+      :           :           :           :           :           :           :                                                  +- Filter (38)
+      :           :           :           :           :           :           :                                                     +- InMemoryTableScan (3)
+      :           :           :           :           :           :           :                                                           +- InMemoryRelation (4)
+      :           :           :           :           :           :           :                                                                 +- AdaptiveSparkPlan (37)
+      :           :           :           :           :           :           :                                                                    +- Project (36)
+      :           :           :           :           :           :           :                                                                       +- SortMergeJoin FullOuter (35)
+      :           :           :           :           :           :           :                                                                          :- Sort (19)
+      :           :           :           :           :           :           :                                                                          :  +- HashAggregate (18)
+      :           :           :           :           :           :           :                                                                          :     +- Exchange (17)
+      :           :           :           :           :           :           :                                                                          :        +- HashAggregate (16)
+      :           :           :           :           :           :           :                                                                          :           +- Project (15)
+      :           :           :           :           :           :           :                                                                          :              +- BroadcastNestedLoopJoin Cross BuildRight (14)
+      :           :           :           :           :           :           :                                                                          :                 :- HashAggregate (10)
+      :           :           :           :           :           :           :                                                                          :                 :  +- Exchange (9)
+      :           :           :           :           :           :           :                                                                          :                 :     +- HashAggregate (8)
+      :           :           :           :           :           :           :                                                                          :                 :        +- Project (7)
+      :           :           :           :           :           :           :                                                                          :                 :           +- Filter (6)
+      :           :           :           :           :           :           :                                                                          :                 :              +- Scan parquet  (5)
+      :           :           :           :           :           :           :                                                                          :                 +- BroadcastExchange (13)
+      :           :           :           :           :           :           :                                                                          :                    +- Project (12)
+      :           :           :           :           :           :           :                                                                          :                       +- Range (11)
+      :           :           :           :           :           :           :                                                                          +- Sort (34)
+      :           :           :           :           :           :           :                                                                             +- HashAggregate (33)
+      :           :           :           :           :           :           :                                                                                +- Exchange (32)
+      :           :           :           :           :           :           :                                                                                   +- HashAggregate (31)
+      :           :           :           :           :           :           :                                                                                      +- Project (30)
+      :           :           :           :           :           :           :                                                                                         +- BroadcastNestedLoopJoin Cross BuildRight (29)
+      :           :           :           :           :           :           :                                                                                            :- HashAggregate (25)
+      :           :           :           :           :           :           :                                                                                            :  +- Exchange (24)
+      :           :           :           :           :           :           :                                                                                            :     +- HashAggregate (23)
+      :           :           :           :           :           :           :                                                                                            :        +- Project (22)
+      :           :           :           :           :           :           :                                                                                            :           +- Filter (21)
+      :           :           :           :           :           :           :                                                                                            :              +- Scan parquet  (20)
+      :           :           :           :           :           :           :                                                                                            +- BroadcastExchange (28)
+      :           :           :           :           :           :           :                                                                                               +- Project (27)
+      :           :           :           :           :           :           :                                                                                                  +- Range (26)
+      :           :           :           :           :           :           +- BroadcastExchange (60)
+      :           :           :           :           :           :              +- Project (59)
+      :           :           :           :           :           :                 +- Filter (58)
+      :           :           :           :           :           :                    +- InMemoryTableScan (56)
+      :           :           :           :           :           :                          +- InMemoryRelation (57)
+      :           :           :           :           :           :                                +- AdaptiveSparkPlan (37)
+      :           :           :           :           :           :                                   +- Project (36)
+      :           :           :           :           :           :                                      +- SortMergeJoin FullOuter (35)
+      :           :           :           :           :           :                                         :- Sort (19)
+      :           :           :           :           :           :                                         :  +- HashAggregate (18)
+      :           :           :           :           :           :                                         :     +- Exchange (17)
+      :           :           :           :           :           :                                         :        +- HashAggregate (16)
+      :           :           :           :           :           :                                         :           +- Project (15)
+      :           :           :           :           :           :                                         :              +- BroadcastNestedLoopJoin Cross BuildRight (14)
+      :           :           :           :           :           :                                         :                 :- HashAggregate (10)
+      :           :           :           :           :           :                                         :                 :  +- Exchange (9)
+      :           :           :           :           :           :                                         :                 :     +- HashAggregate (8)
+      :           :           :           :           :           :                                         :                 :        +- Project (7)
+      :           :           :           :           :           :                                         :                 :           +- Filter (6)
+      :           :           :           :           :           :                                         :                 :              +- Scan parquet  (5)
+      :           :           :           :           :           :                                         :                 +- BroadcastExchange (13)
+      :           :           :           :           :           :                                         :                    +- Project (12)
+      :           :           :           :           :           :                                         :                       +- Range (11)
+      :           :           :           :           :           :                                         +- Sort (34)
+      :           :           :           :           :           :                                            +- HashAggregate (33)
+      :           :           :           :           :           :                                               +- Exchange (32)
+      :           :           :           :           :           :                                                  +- HashAggregate (31)
+      :           :           :           :           :           :                                                     +- Project (30)
+      :           :           :           :           :           :                                                        +- BroadcastNestedLoopJoin Cross BuildRight (29)
+      :           :           :           :           :           :                                                           :- HashAggregate (25)
+      :           :           :           :           :           :                                                           :  +- Exchange (24)
+      :           :           :           :           :           :                                                           :     +- HashAggregate (23)
+      :           :           :           :           :           :                                                           :        +- Project (22)
+      :           :           :           :           :           :                                                           :           +- Filter (21)
+      :           :           :           :           :           :                                                           :              +- Scan parquet  (20)
+      :           :           :           :           :           :                                                           +- BroadcastExchange (28)
+      :           :           :           :           :           :                                                              +- Project (27)
+      :           :           :           :           :           :                                                                 +- Range (26)
+      :           :           :           :           :           +- BroadcastExchange (69)
+      :           :           :           :           :              +- Project (68)
+      :           :           :           :           :                 +- Filter (67)
+      :           :           :           :           :                    +- InMemoryTableScan (65)
+      :           :           :           :           :                          +- InMemoryRelation (66)
+      :           :           :           :           :                                +- AdaptiveSparkPlan (37)
+      :           :           :           :           :                                   +- Project (36)
+      :           :           :           :           :                                      +- SortMergeJoin FullOuter (35)
+      :           :           :           :           :                                         :- Sort (19)
+      :           :           :           :           :                                         :  +- HashAggregate (18)
+      :           :           :           :           :                                         :     +- Exchange (17)
+      :           :           :           :           :                                         :        +- HashAggregate (16)
+      :           :           :           :           :                                         :           +- Project (15)
+      :           :           :           :           :                                         :              +- BroadcastNestedLoopJoin Cross BuildRight (14)
+      :           :           :           :           :                                         :                 :- HashAggregate (10)
+      :           :           :           :           :                                         :                 :  +- Exchange (9)
+      :           :           :           :           :                                         :                 :     +- HashAggregate (8)
+      :           :           :           :           :                                         :                 :        +- Project (7)
+      :           :           :           :           :                                         :                 :           +- Filter (6)
+      :           :           :           :           :                                         :                 :              +- Scan parquet  (5)
+      :           :           :           :           :                                         :                 +- BroadcastExchange (13)
+      :           :           :           :           :                                         :                    +- Project (12)
+      :           :           :           :           :                                         :                       +- Range (11)
+      :           :           :           :           :                                         +- Sort (34)
+      :           :           :           :           :                                            +- HashAggregate (33)
+      :           :           :           :           :                                               +- Exchange (32)
+      :           :           :           :           :                                                  +- HashAggregate (31)
+      :           :           :           :           :                                                     +- Project (30)
+      :           :           :           :           :                                                        +- BroadcastNestedLoopJoin Cross BuildRight (29)
+      :           :           :           :           :                                                           :- HashAggregate (25)
+      :           :           :           :           :                                                           :  +- Exchange (24)
+      :           :           :           :           :                                                           :     +- HashAggregate (23)
+      :           :           :           :           :                                                           :        +- Project (22)
+      :           :           :           :           :                                                           :           +- Filter (21)
+      :           :           :           :           :                                                           :              +- Scan parquet  (20)
+      :           :           :           :           :                                                           +- BroadcastExchange (28)
+      :           :           :           :           :                                                              +- Project (27)
+      :           :           :           :           :                                                                 +- Range (26)
+      :           :           :           :           +- BroadcastExchange (78)
+      :           :           :           :              +- Project (77)
+      :           :           :           :                 +- Filter (76)
+      :           :           :           :                    +- InMemoryTableScan (74)
+      :           :           :           :                          +- InMemoryRelation (75)
+      :           :           :           :                                +- AdaptiveSparkPlan (37)
+      :           :           :           :                                   +- Project (36)
+      :           :           :           :                                      +- SortMergeJoin FullOuter (35)
+      :           :           :           :                                         :- Sort (19)
+      :           :           :           :                                         :  +- HashAggregate (18)
+      :           :           :           :                                         :     +- Exchange (17)
+      :           :           :           :                                         :        +- HashAggregate (16)
+      :           :           :           :                                         :           +- Project (15)
+      :           :           :           :                                         :              +- BroadcastNestedLoopJoin Cross BuildRight (14)
+      :           :           :           :                                         :                 :- HashAggregate (10)
+      :           :           :           :                                         :                 :  +- Exchange (9)
+      :           :           :           :                                         :                 :     +- HashAggregate (8)
+      :           :           :           :                                         :                 :        +- Project (7)
+      :           :           :           :                                         :                 :           +- Filter (6)
+      :           :           :           :                                         :                 :              +- Scan parquet  (5)
+      :           :           :           :                                         :                 +- BroadcastExchange (13)
+      :           :           :           :                                         :                    +- Project (12)
+      :           :           :           :                                         :                       +- Range (11)
+      :           :           :           :                                         +- Sort (34)
+      :           :           :           :                                            +- HashAggregate (33)
+      :           :           :           :                                               +- Exchange (32)
+      :           :           :           :                                                  +- HashAggregate (31)
+      :           :           :           :                                                     +- Project (30)
+      :           :           :           :                                                        +- BroadcastNestedLoopJoin Cross BuildRight (29)
+      :           :           :           :                                                           :- HashAggregate (25)
+      :           :           :           :                                                           :  +- Exchange (24)
+      :           :           :           :                                                           :     +- HashAggregate (23)
+      :           :           :           :                                                           :        +- Project (22)
+      :           :           :           :                                                           :           +- Filter (21)
+      :           :           :           :                                                           :              +- Scan parquet  (20)
+      :           :           :           :                                                           +- BroadcastExchange (28)
+      :           :           :           :                                                              +- Project (27)
+      :           :           :           :                                                                 +- Range (26)
+      :           :           :           +- BroadcastExchange (87)
+      :           :           :              +- Project (86)
+      :           :           :                 +- Filter (85)
+      :           :           :                    +- InMemoryTableScan (83)
+      :           :           :                          +- InMemoryRelation (84)
+      :           :           :                                +- AdaptiveSparkPlan (37)
+      :           :           :                                   +- Project (36)
+      :           :           :                                      +- SortMergeJoin FullOuter (35)
+      :           :           :                                         :- Sort (19)
+      :           :           :                                         :  +- HashAggregate (18)
+      :           :           :                                         :     +- Exchange (17)
+      :           :           :                                         :        +- HashAggregate (16)
+      :           :           :                                         :           +- Project (15)
+      :           :           :                                         :              +- BroadcastNestedLoopJoin Cross BuildRight (14)
+      :           :           :                                         :                 :- HashAggregate (10)
+      :           :           :                                         :                 :  +- Exchange (9)
+      :           :           :                                         :                 :     +- HashAggregate (8)
+      :           :           :                                         :                 :        +- Project (7)
+      :           :           :                                         :                 :           +- Filter (6)
+      :           :           :                                         :                 :              +- Scan parquet  (5)
+      :           :           :                                         :                 +- BroadcastExchange (13)
+      :           :           :                                         :                    +- Project (12)
+      :           :           :                                         :                       +- Range (11)
+      :           :           :                                         +- Sort (34)
+      :           :           :                                            +- HashAggregate (33)
+      :           :           :                                               +- Exchange (32)
+      :           :           :                                                  +- HashAggregate (31)
+      :           :           :                                                     +- Project (30)
+      :           :           :                                                        +- BroadcastNestedLoopJoin Cross BuildRight (29)
+      :           :           :                                                           :- HashAggregate (25)
+      :           :           :                                                           :  +- Exchange (24)
+      :           :           :                                                           :     +- HashAggregate (23)
+      :           :           :                                                           :        +- Project (22)
+      :           :           :                                                           :           +- Filter (21)
+      :           :           :                                                           :              +- Scan parquet  (20)
+      :           :           :                                                           +- BroadcastExchange (28)
+      :           :           :                                                              +- Project (27)
+      :           :           :                                                                 +- Range (26)
+      :           :           +- BroadcastExchange (96)
+      :           :              +- Project (95)
+      :           :                 +- Filter (94)
+      :           :                    +- InMemoryTableScan (92)
+      :           :                          +- InMemoryRelation (93)
+      :           :                                +- AdaptiveSparkPlan (37)
+      :           :                                   +- Project (36)
+      :           :                                      +- SortMergeJoin FullOuter (35)
+      :           :                                         :- Sort (19)
+      :           :                                         :  +- HashAggregate (18)
+      :           :                                         :     +- Exchange (17)
+      :           :                                         :        +- HashAggregate (16)
+      :           :                                         :           +- Project (15)
+      :           :                                         :              +- BroadcastNestedLoopJoin Cross BuildRight (14)
+      :           :                                         :                 :- HashAggregate (10)
+      :           :                                         :                 :  +- Exchange (9)
+      :           :                                         :                 :     +- HashAggregate (8)
+      :           :                                         :                 :        +- Project (7)
+      :           :                                         :                 :           +- Filter (6)
+      :           :                                         :                 :              +- Scan parquet  (5)
+      :           :                                         :                 +- BroadcastExchange (13)
+      :           :                                         :                    +- Project (12)
+      :           :                                         :                       +- Range (11)
+      :           :                                         +- Sort (34)
+      :           :                                            +- HashAggregate (33)
+      :           :                                               +- Exchange (32)
+      :           :                                                  +- HashAggregate (31)
+      :           :                                                     +- Project (30)
+      :           :                                                        +- BroadcastNestedLoopJoin Cross BuildRight (29)
+      :           :                                                           :- HashAggregate (25)
+      :           :                                                           :  +- Exchange (24)
+      :           :                                                           :     +- HashAggregate (23)
+      :           :                                                           :        +- Project (22)
+      :           :                                                           :           +- Filter (21)
+      :           :                                                           :              +- Scan parquet  (20)
+      :           :                                                           +- BroadcastExchange (28)
+      :           :                                                              +- Project (27)
+      :           :                                                                 +- Range (26)
+      :           +- BroadcastExchange (105)
+      :              +- Project (104)
+      :                 +- Filter (103)
+      :                    +- InMemoryTableScan (101)
+      :                          +- InMemoryRelation (102)
+      :                                +- AdaptiveSparkPlan (37)
+      :                                   +- Project (36)
+      :                                      +- SortMergeJoin FullOuter (35)
+      :                                         :- Sort (19)
+      :                                         :  +- HashAggregate (18)
+      :                                         :     +- Exchange (17)
+      :                                         :        +- HashAggregate (16)
+      :                                         :           +- Project (15)
+      :                                         :              +- BroadcastNestedLoopJoin Cross BuildRight (14)
+      :                                         :                 :- HashAggregate (10)
+      :                                         :                 :  +- Exchange (9)
+      :                                         :                 :     +- HashAggregate (8)
+      :                                         :                 :        +- Project (7)
+      :                                         :                 :           +- Filter (6)
+      :                                         :                 :              +- Scan parquet  (5)
+      :                                         :                 +- BroadcastExchange (13)
+      :                                         :                    +- Project (12)
+      :                                         :                       +- Range (11)
+      :                                         +- Sort (34)
+      :                                            +- HashAggregate (33)
+      :                                               +- Exchange (32)
+      :                                                  +- HashAggregate (31)
+      :                                                     +- Project (30)
+      :                                                        +- BroadcastNestedLoopJoin Cross BuildRight (29)
+      :                                                           :- HashAggregate (25)
+      :                                                           :  +- Exchange (24)
+      :                                                           :     +- HashAggregate (23)
+      :                                                           :        +- Project (22)
+      :                                                           :           +- Filter (21)
+      :                                                           :              +- Scan parquet  (20)
+      :                                                           +- BroadcastExchange (28)
+      :                                                              +- Project (27)
+      :                                                                 +- Range (26)
+      +- BroadcastExchange (114)
+         +- Project (113)
+            +- Filter (112)
+               +- InMemoryTableScan (110)
+                     +- InMemoryRelation (111)
+                           +- AdaptiveSparkPlan (37)
+                              +- Project (36)
+                                 +- SortMergeJoin FullOuter (35)
+                                    :- Sort (19)
+                                    :  +- HashAggregate (18)
+                                    :     +- Exchange (17)
+                                    :        +- HashAggregate (16)
+                                    :           +- Project (15)
+                                    :              +- BroadcastNestedLoopJoin Cross BuildRight (14)
+                                    :                 :- HashAggregate (10)
+                                    :                 :  +- Exchange (9)
+                                    :                 :     +- HashAggregate (8)
+                                    :                 :        +- Project (7)
+                                    :                 :           +- Filter (6)
+                                    :                 :              +- Scan parquet  (5)
+                                    :                 +- BroadcastExchange (13)
+                                    :                    +- Project (12)
+                                    :                       +- Range (11)
+                                    +- Sort (34)
+                                       +- HashAggregate (33)
+                                          +- Exchange (32)
+                                             +- HashAggregate (31)
+                                                +- Project (30)
+                                                   +- BroadcastNestedLoopJoin Cross BuildRight (29)
+                                                      :- HashAggregate (25)
+                                                      :  +- Exchange (24)
+                                                      :     +- HashAggregate (23)
+                                                      :        +- Project (22)
+                                                      :           +- Filter (21)
+                                                      :              +- Scan parquet  (20)
+                                                      +- BroadcastExchange (28)
+                                                         +- Project (27)
+                                                            +- Range (26)
+
+
+(1) Scan parquet 
+Output [13]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, annee#33, mois#34]
+Batched: true
+Location: InMemoryFileIndex [file:/Users/admin/Projects/projet_meteo_esgi/data/silver/observations]
+ReadSchema: struct<ic_id:string,libelle:string,latitude:double,longitude:double,altitude:bigint,date:date,tn:double,tx:double,tm:double,rr:double,flag_partiel:boolean>
+
+(2) Project
+Output [12]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, least(dayofyear(date#7), 365) AS doy#222]
+Input [13]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, annee#33, mois#34]
+
+(3) InMemoryTableScan
+Output [6]: [ic_id#166, doy#167L, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101]
+Arguments: [ic_id#166, doy#167L, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101], [isnotnull(ic_id#166), isnotnull(doy#167L)]
+
+(4) InMemoryRelation
+Arguments: [ic_id#166, doy#167L, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101], StorageLevel(disk, memory, deserialized, 1 replicas)
+
+(5) Scan parquet 
+Output [5]: [ic_id#0, date#7, tn#8, annee#33, mois#34]
+Batched: true
+Location: InMemoryFileIndex [file:/Users/admin/Projects/projet_meteo_esgi/data/silver/observations]
+PushedFilters: [IsNotNull(date), LessThanOrEqual(date,2021-12-31)]
+ReadSchema: struct<ic_id:string,date:date,tn:double>
+
+(6) Filter
+Input [5]: [ic_id#0, date#7, tn#8, annee#33, mois#34]
+Condition : (isnotnull(date#7) AND (date#7 <= 2021-12-31))
+
+(7) Project
+Output [3]: [ic_id#0, least(dayofyear(date#7), 365) AS doy#36, tn#8]
+Input [5]: [ic_id#0, date#7, tn#8, annee#33, mois#34]
+
+(8) HashAggregate
+Input [3]: [ic_id#0, doy#36, tn#8]
+Keys [2]: [ic_id#0, doy#36]
+Functions [2]: [partial_avg(tn#8), partial_stddev(tn#8)]
+Aggregate Attributes [5]: [sum#176, count#177L, n#46, avg#47, m2#48]
+Results [7]: [ic_id#0, doy#36, sum#178, count#179L, n#51, avg#52, m2#53]
+
+(9) Exchange
+Input [7]: [ic_id#0, doy#36, sum#178, count#179L, n#51, avg#52, m2#53]
+Arguments: hashpartitioning(ic_id#0, doy#36, 200), ENSURE_REQUIREMENTS, [plan_id=84]
+
+(10) HashAggregate
+Input [7]: [ic_id#0, doy#36, sum#178, count#179L, n#51, avg#52, m2#53]
+Keys [2]: [ic_id#0, doy#36]
+Functions [2]: [avg(tn#8), stddev(tn#8)]
+Aggregate Attributes [2]: [avg(tn#8)#45, stddev(tn#8)#54]
+Results [4]: [ic_id#0, doy#36, avg(tn#8)#45 AS m_mean#39, stddev(tn#8)#54 AS m_std#40]
+
+(11) Range
+Output [1]: [id#37L]
+Arguments: Range (-15, 16, step=1, splits=Some(4))
+
+(12) Project
+Output [1]: [id#37L AS off#38L]
+Input [1]: [id#37L]
+
+(13) BroadcastExchange
+Input [1]: [off#38L]
+Arguments: IdentityBroadcastMode, [plan_id=87]
+
+(14) BroadcastNestedLoopJoin
+Join type: Cross
+Join condition: None
+
+(15) Project
+Output [4]: [ic_id#0, m_mean#39, m_std#40, (pmod((cast((doy#36 - 1) as bigint) + off#38L), 365) + 1) AS doy_cible#63L]
+Input [5]: [ic_id#0, doy#36, m_mean#39, m_std#40, off#38L]
+
+(16) HashAggregate
+Input [4]: [ic_id#0, m_mean#39, m_std#40, doy_cible#63L]
+Keys [2]: [ic_id#0, doy_cible#63L]
+Functions [2]: [partial_avg(m_mean#39), partial_avg(m_std#40)]
+Aggregate Attributes [4]: [sum#168, count#169L, sum#170, count#171L]
+Results [6]: [ic_id#0, doy_cible#63L, sum#172, count#173L, sum#174, count#175L]
+
+(17) Exchange
+Input [6]: [ic_id#0, doy_cible#63L, sum#172, count#173L, sum#174, count#175L]
+Arguments: hashpartitioning(ic_id#0, doy_cible#63L, 200), ENSURE_REQUIREMENTS, [plan_id=92]
+
+(18) HashAggregate
+Input [6]: [ic_id#0, doy_cible#63L, sum#172, count#173L, sum#174, count#175L]
+Keys [2]: [ic_id#0, doy_cible#63L]
+Functions [2]: [avg(m_mean#39), avg(m_std#40)]
+Aggregate Attributes [2]: [avg(m_mean#39)#72, avg(m_std#40)#73]
+Results [4]: [ic_id#0, doy_cible#63L AS doy#74L, avg(m_mean#39)#72 AS clim_tn#64, avg(m_std#40)#73 AS clim_tn_std#65]
+
+(19) Sort
+Input [4]: [ic_id#0, doy#74L, clim_tn#64, clim_tn_std#65]
+Arguments: [ic_id#0 ASC NULLS FIRST, doy#74L ASC NULLS FIRST], false, 0
+
+(20) Scan parquet 
+Output [5]: [ic_id#111, date#118, tx#120, annee#144, mois#145]
+Batched: true
+Location: InMemoryFileIndex [file:/Users/admin/Projects/projet_meteo_esgi/data/silver/observations]
+PushedFilters: [IsNotNull(date), LessThanOrEqual(date,2021-12-31)]
+ReadSchema: struct<ic_id:string,date:date,tx:double>
+
+(21) Filter
+Input [5]: [ic_id#111, date#118, tx#120, annee#144, mois#145]
+Condition : (isnotnull(date#118) AND (date#118 <= 2021-12-31))
+
+(22) Project
+Output [3]: [ic_id#111, least(dayofyear(date#118), 365) AS doy#146, tx#120]
+Input [5]: [ic_id#111, date#118, tx#120, annee#144, mois#145]
+
+(23) HashAggregate
+Input [3]: [ic_id#111, doy#146, tx#120]
+Keys [2]: [ic_id#111, doy#146]
+Functions [2]: [partial_avg(tx#120), partial_stddev(tx#120)]
+Aggregate Attributes [5]: [sum#188, count#189L, n#147, avg#148, m2#149]
+Results [7]: [ic_id#111, doy#146, sum#190, count#191L, n#152, avg#153, m2#154]
+
+(24) Exchange
+Input [7]: [ic_id#111, doy#146, sum#190, count#191L, n#152, avg#153, m2#154]
+Arguments: hashpartitioning(ic_id#111, doy#146, 200), ENSURE_REQUIREMENTS, [plan_id=94]
+
+(25) HashAggregate
+Input [7]: [ic_id#111, doy#146, sum#190, count#191L, n#152, avg#153, m2#154]
+Keys [2]: [ic_id#111, doy#146]
+Functions [2]: [avg(tx#120), stddev(tx#120)]
+Aggregate Attributes [2]: [avg(tx#120)#81, stddev(tx#120)#90]
+Results [4]: [ic_id#111, doy#146, avg(tx#120)#81 AS m_mean#75, stddev(tx#120)#90 AS m_std#76]
+
+(26) Range
+Output [1]: [id#155L]
+Arguments: Range (-15, 16, step=1, splits=Some(4))
+
+(27) Project
+Output [1]: [id#155L AS off#156L]
+Input [1]: [id#155L]
+
+(28) BroadcastExchange
+Input [1]: [off#156L]
+Arguments: IdentityBroadcastMode, [plan_id=97]
+
+(29) BroadcastNestedLoopJoin
+Join type: Cross
+Join condition: None
+
+(30) Project
+Output [4]: [ic_id#111, m_mean#75, m_std#76, (pmod((cast((doy#146 - 1) as bigint) + off#156L), 365) + 1) AS doy_cible#99L]
+Input [5]: [ic_id#111, doy#146, m_mean#75, m_std#76, off#156L]
+
+(31) HashAggregate
+Input [4]: [ic_id#111, m_mean#75, m_std#76, doy_cible#99L]
+Keys [2]: [ic_id#111, doy_cible#99L]
+Functions [2]: [partial_avg(m_mean#75), partial_avg(m_std#76)]
+Aggregate Attributes [4]: [sum#180, count#181L, sum#182, count#183L]
+Results [6]: [ic_id#111, doy_cible#99L, sum#184, count#185L, sum#186, count#187L]
+
+(32) Exchange
+Input [6]: [ic_id#111, doy_cible#99L, sum#184, count#185L, sum#186, count#187L]
+Arguments: hashpartitioning(ic_id#111, doy_cible#99L, 200), ENSURE_REQUIREMENTS, [plan_id=102]
+
+(33) HashAggregate
+Input [6]: [ic_id#111, doy_cible#99L, sum#184, count#185L, sum#186, count#187L]
+Keys [2]: [ic_id#111, doy_cible#99L]
+Functions [2]: [avg(m_mean#75), avg(m_std#76)]
+Aggregate Attributes [2]: [avg(m_mean#75)#108, avg(m_std#76)#109]
+Results [4]: [ic_id#111, doy_cible#99L AS doy#110L, avg(m_mean#75)#108 AS clim_tx#100, avg(m_std#76)#109 AS clim_tx_std#101]
+
+(34) Sort
+Input [4]: [ic_id#111, doy#110L, clim_tx#100, clim_tx_std#101]
+Arguments: [ic_id#111 ASC NULLS FIRST, doy#110L ASC NULLS FIRST], false, 0
+
+(35) SortMergeJoin
+Left keys [2]: [ic_id#0, doy#74L]
+Right keys [2]: [ic_id#111, doy#110L]
+Join type: FullOuter
+Join condition: None
+
+(36) Project
+Output [6]: [coalesce(ic_id#0, ic_id#111) AS ic_id#166, coalesce(doy#74L, doy#110L) AS doy#167L, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101]
+Input [8]: [ic_id#0, doy#74L, clim_tn#64, clim_tn_std#65, ic_id#111, doy#110L, clim_tx#100, clim_tx_std#101]
+
+(37) AdaptiveSparkPlan
+Output [6]: [ic_id#166, doy#167L, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101]
+Arguments: isFinalPlan=false
+
+(38) Filter
+Input [6]: [ic_id#166, doy#167L, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101]
+Condition : (isnotnull(ic_id#166) AND isnotnull(doy#167L))
+
+(39) BroadcastExchange
+Input [6]: [ic_id#166, doy#167L, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101]
+Arguments: HashedRelationBroadcastMode(List(input[0, string, false], input[1, bigint, false]),false), [plan_id=322]
+
+(40) BroadcastHashJoin
+Left keys [2]: [ic_id#0, cast(doy#222 as bigint)]
+Right keys [2]: [ic_id#166, doy#167L]
+Join type: LeftOuter
+Join condition: None
+
+(41) Project
+Output [19]: [ic_id#0, doy#222, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, (tn#8 - clim_tn#64) AS tn_anom#275, (tx#9 - clim_tx#100) AS tx_anom#276, (tx#9 - tn#8) AS amplitude#277]
+Input [18]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, doy#222, ic_id#166, doy#167L, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101]
+
+(42) Exchange
+Input [19]: [ic_id#0, doy#222, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277]
+Arguments: hashpartitioning(ic_id#0, 200), ENSURE_REQUIREMENTS, [plan_id=326]
+
+(43) Sort
+Input [19]: [ic_id#0, doy#222, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277]
+Arguments: [ic_id#0 ASC NULLS FIRST, date#7 ASC NULLS FIRST], false, 0
+
+(44) Window
+Input [19]: [ic_id#0, doy#222, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277]
+Arguments: [lag(tn#8, -1, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, -1, -1)) AS tn_lag1#278, lag(tn#8, -2, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, -2, -2)) AS tn_lag2#279, lag(tn#8, -3, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, -3, -3)) AS tn_lag3#280, lag(tn#8, -4, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, -4, -4)) AS tn_lag4#281, lag(tn#8, -5, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, -5, -5)) AS tn_lag5#282, lag(tn#8, -6, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, -6, -6)) AS tn_lag6#283, lag(tn#8, -7, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, -7, -7)) AS tn_lag7#284, lag(tn#8, -14, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, -14, -14)) AS tn_lag14#285, lag(tn#8, -21, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, -21, -21)) AS tn_lag21#286, lag(tn#8, -365, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, -365, -365)) AS tn_lag365#287, lag(tx#9, -1, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, -1, -1)) AS tx_lag1#288, lag(tx#9, -2, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, -2, -2)) AS tx_lag2#289, lag(tx#9, -3, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, -3, -3)) AS tx_lag3#290, lag(tx#9, -4, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, -4, -4)) AS tx_lag4#291, lag(tx#9, -5, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, -5, -5)) AS tx_lag5#292, lag(tx#9, -6, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, -6, -6)) AS tx_lag6#293, lag(tx#9, -7, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, -7, -7)) AS tx_lag7#294, lag(tx#9, -14, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, -14, -14)) AS tx_lag14#295, lag(tx#9, -21, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, -21, -21)) AS tx_lag21#296, lag(tx#9, -365, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, -365, -365)) AS tx_lag365#297, lag(tm#10, -1, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, -1, -1)) AS tm_lag1#298, lag(tm#10, -2, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, -2, -2)) AS tm_lag2#299, lag(tm#10, -3, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, -3, -3)) AS tm_lag3#300, lag(tm#10, -4, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, -4, -4)) AS tm_lag4#301, lag(tm#10, -5, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, -5, -5)) AS tm_lag5#302, ... 54 more fields], [ic_id#0], [date#7 ASC NULLS FIRST]
+
+(45) Project
+Output [79]: [ic_id#0, doy#222, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, (tn#8 - _we0#316) AS tn_diff1#315, (tx#9 - _we0#318) AS tx_diff1#317, CASE WHEN (_we0#322L >= 1) THEN _we1#323 END AS tn_moy3#319, CASE WHEN (_we0#327L >= 1) THEN _we1#328 END AS tx_moy3#324, CASE WHEN (_we0#332L >= 1) THEN _we1#333 END AS tm_moy3#329, CASE WHEN (_we0#345L >= 2) THEN _we1#346 END AS tm_std3#334, CASE WHEN (_we0#350L >= 1) THEN _we1#351 END AS rr_cumul3#347, CASE WHEN (_we0#355L >= 3) THEN _we1#356 END AS tn_moy7#352, CASE WHEN (_we0#360L >= 3) THEN _we1#361 END AS tx_moy7#357, CASE WHEN (_we0#365L >= 3) THEN _we1#366 END AS tm_moy7#362, CASE WHEN (_we0#378L >= 3) THEN _we1#379 END AS tm_std7#367, CASE WHEN (_we0#383L >= 3) THEN _we1#384 END AS rr_cumul7#380, CASE WHEN (_we0#388L >= 7) THEN _we1#389 END AS tn_moy14#385, CASE WHEN (_we0#393L >= 7) THEN _we1#394 END AS tx_moy14#390, CASE WHEN (_we0#398L >= 7) THEN _we1#399 END AS tm_moy14#395, CASE WHEN (_we0#411L >= 7) THEN _we1#412 END AS tm_std14#400, CASE WHEN (_we0#416L >= 7) THEN _we1#417 END AS rr_cumul14#413, CASE WHEN (_we0#421L >= 15) THEN _we1#422 END AS tn_moy30#418, CASE WHEN (_we0#426L >= 15) THEN _we1#427 END AS tx_moy30#423, CASE WHEN (_we0#431L >= 15) THEN _we1#432 END AS tm_moy30#428, CASE WHEN (_we0#444L >= 15) THEN _we1#445 END AS tm_std30#433, CASE WHEN (_we0#449L >= 15) THEN _we1#450 END AS rr_cumul30#446, CASE WHEN (rr#11 < 0.2) THEN 1.0 WHEN (rr#11 >= 0.2) THEN 0.0 END AS _sec#451]
+Input [98]: [ic_id#0, doy#222, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, _we0#316, _we0#318, _we0#322L, _we1#323, _we0#327L, _we1#328, _we0#332L, _we1#333, _we0#345L, _we1#346, _we0#350L, _we1#351, _we0#355L, _we1#356, _we0#360L, _we1#361, _we0#365L, _we1#366, _we0#378L, _we1#379, _we0#383L, _we1#384, _we0#388L, _we1#389, _we0#393L, _we1#394, _we0#398L, _we1#399, _we0#411L, _we1#412, _we0#416L, _we1#417, _we0#421L, _we1#422, _we0#426L, _we1#427, _we0#431L, _we1#432, _we0#444L, _we1#445, _we0#449L, _we1#450]
+
+(46) Window
+Input [79]: [ic_id#0, doy#222, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, _sec#451]
+Arguments: [count(_sec#451) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, -6, currentrow$())) AS _we0#455L, sum(_sec#451) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, -6, currentrow$())) AS _we1#456], [ic_id#0], [date#7 ASC NULLS FIRST]
+
+(47) Project
+Output [79]: [ic_id#0, doy#222, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, CASE WHEN (_we0#455L >= 4) THEN _we1#456 END AS jours_secs_7#452]
+Input [81]: [ic_id#0, doy#222, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, _sec#451, _we0#455L, _we1#456]
+
+(48) Exchange
+Input [79]: [ic_id#0, doy#222, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452]
+Arguments: hashpartitioning(date#7, 200), ENSURE_REQUIREMENTS, [plan_id=333]
+
+(49) Sort
+Input [79]: [ic_id#0, doy#222, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452]
+Arguments: [date#7 ASC NULLS FIRST], false, 0
+
+(50) Window
+Input [79]: [ic_id#0, doy#222, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452]
+Arguments: [avg(tn_anom#275) windowspecdefinition(date#7, specifiedwindowframe(RowFrame, unboundedpreceding$(), unboundedfollowing$())) AS tn_anom_nationale#457, avg(tx_anom#276) windowspecdefinition(date#7, specifiedwindowframe(RowFrame, unboundedpreceding$(), unboundedfollowing$())) AS tx_anom_nationale#459], [date#7]
+
+(51) Project
+Output [83]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, SIN(((6.283185307179586 * cast(doy#222 as double)) / 365.25)) AS doy_sin#461, COS(((6.283185307179586 * cast(doy#222 as double)) / 365.25)) AS doy_cos#462, month(date#7) AS mois#463]
+Input [81]: [ic_id#0, doy#222, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459]
+
+(52) Exchange
+Input [83]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463]
+Arguments: hashpartitioning(ic_id#0, 200), ENSURE_REQUIREMENTS, [plan_id=338]
+
+(53) Sort
+Input [83]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463]
+Arguments: [ic_id#0 ASC NULLS FIRST, date#7 ASC NULLS FIRST], false, 0
+
+(54) Window
+Input [83]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463]
+Arguments: [lead(date#7, 1, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, 1, 1)) AS _we0#465, lead(tn#8, 1, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, 1, 1)) AS _we1#466, lead(date#7, 1, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, 1, 1)) AS _we0#469, lead(tx#9, 1, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, 1, 1)) AS _we1#470], [ic_id#0], [date#7 ASC NULLS FIRST]
+
+(55) Project
+Output [88]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, CASE WHEN (_we0#465 = date_add(date#7, 1)) THEN _we1#466 END AS cible_tn_h1#464, tn#8 AS base_persistance_tn_h1#467, CASE WHEN (_we0#469 = date_add(date#7, 1)) THEN _we1#470 END AS cible_tx_h1#468, tx#9 AS base_persistance_tx_h1#471, least(dayofyear(date_add(date#7, 1)), 365) AS doy_cible#475]
+Input [87]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, _we0#465, _we1#466, _we0#469, _we1#470]
+
+(56) InMemoryTableScan
+Output [4]: [clim_tn#525, clim_tx#577, doy#581L, ic_id#580]
+Arguments: [clim_tn#525, clim_tx#577, doy#581L, ic_id#580], [isnotnull(ic_id#580), isnotnull(doy#581L)]
+
+(57) InMemoryRelation
+Arguments: [ic_id#580, doy#581L, clim_tn#525, clim_tn_std#526, clim_tx#577, clim_tx_std#578], StorageLevel(disk, memory, deserialized, 1 replicas)
+
+(58) Filter
+Input [4]: [clim_tn#525, clim_tx#577, doy#581L, ic_id#580]
+Condition : (isnotnull(ic_id#580) AND isnotnull(doy#581L))
+
+(59) Project
+Output [4]: [ic_id#580, doy#581L AS doy_cible#472L, clim_tn#525 AS base_clim_tn_h1#473, clim_tx#577 AS base_clim_tx_h1#474]
+Input [4]: [clim_tn#525, clim_tx#577, doy#581L, ic_id#580]
+
+(60) BroadcastExchange
+Input [4]: [ic_id#580, doy_cible#472L, base_clim_tn_h1#473, base_clim_tx_h1#474]
+Arguments: HashedRelationBroadcastMode(List(input[0, string, true], input[1, bigint, true]),false), [plan_id=343]
+
+(61) BroadcastHashJoin
+Left keys [2]: [ic_id#0, cast(doy_cible#475 as bigint)]
+Right keys [2]: [ic_id#580, doy_cible#472L]
+Join type: LeftOuter
+Join condition: None
+
+(62) Project
+Output [89]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474]
+Input [92]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, doy_cible#475, ic_id#580, doy_cible#472L, base_clim_tn_h1#473, base_clim_tx_h1#474]
+
+(63) Window
+Input [89]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474]
+Arguments: [lead(date#7, 2, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, 2, 2)) AS _we0#601, lead(tn#8, 2, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, 2, 2)) AS _we1#602, lead(date#7, 2, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, 2, 2)) AS _we0#605, lead(tx#9, 2, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, 2, 2)) AS _we1#606], [ic_id#0], [date#7 ASC NULLS FIRST]
+
+(64) Project
+Output [94]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, CASE WHEN (_we0#601 = date_add(date#7, 2)) THEN _we1#602 END AS cible_tn_h2#600, tn#8 AS base_persistance_tn_h2#603, CASE WHEN (_we0#605 = date_add(date#7, 2)) THEN _we1#606 END AS cible_tx_h2#604, tx#9 AS base_persistance_tx_h2#607, least(dayofyear(date_add(date#7, 2)), 365) AS doy_cible#611]
+Input [93]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, _we0#601, _we1#602, _we0#605, _we1#606]
+
+(65) InMemoryTableScan
+Output [4]: [clim_tn#661, clim_tx#713, doy#717L, ic_id#716]
+Arguments: [clim_tn#661, clim_tx#713, doy#717L, ic_id#716], [isnotnull(ic_id#716), isnotnull(doy#717L)]
+
+(66) InMemoryRelation
+Arguments: [ic_id#716, doy#717L, clim_tn#661, clim_tn_std#662, clim_tx#713, clim_tx_std#714], StorageLevel(disk, memory, deserialized, 1 replicas)
+
+(67) Filter
+Input [4]: [clim_tn#661, clim_tx#713, doy#717L, ic_id#716]
+Condition : (isnotnull(ic_id#716) AND isnotnull(doy#717L))
+
+(68) Project
+Output [4]: [ic_id#716, doy#717L AS doy_cible#608L, clim_tn#661 AS base_clim_tn_h2#609, clim_tx#713 AS base_clim_tx_h2#610]
+Input [4]: [clim_tn#661, clim_tx#713, doy#717L, ic_id#716]
+
+(69) BroadcastExchange
+Input [4]: [ic_id#716, doy_cible#608L, base_clim_tn_h2#609, base_clim_tx_h2#610]
+Arguments: HashedRelationBroadcastMode(List(input[0, string, true], input[1, bigint, true]),false), [plan_id=349]
+
+(70) BroadcastHashJoin
+Left keys [2]: [ic_id#0, cast(doy_cible#611 as bigint)]
+Right keys [2]: [ic_id#716, doy_cible#608L]
+Join type: LeftOuter
+Join condition: None
+
+(71) Project
+Output [95]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, cible_tn_h2#600, base_persistance_tn_h2#603, cible_tx_h2#604, base_persistance_tx_h2#607, base_clim_tn_h2#609, base_clim_tx_h2#610]
+Input [98]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, cible_tn_h2#600, base_persistance_tn_h2#603, cible_tx_h2#604, base_persistance_tx_h2#607, doy_cible#611, ic_id#716, doy_cible#608L, base_clim_tn_h2#609, base_clim_tx_h2#610]
+
+(72) Window
+Input [95]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, cible_tn_h2#600, base_persistance_tn_h2#603, cible_tx_h2#604, base_persistance_tx_h2#607, base_clim_tn_h2#609, base_clim_tx_h2#610]
+Arguments: [lead(date#7, 3, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, 3, 3)) AS _we0#737, lead(tn#8, 3, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, 3, 3)) AS _we1#738, lead(date#7, 3, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, 3, 3)) AS _we0#741, lead(tx#9, 3, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, 3, 3)) AS _we1#742], [ic_id#0], [date#7 ASC NULLS FIRST]
+
+(73) Project
+Output [100]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, cible_tn_h2#600, base_persistance_tn_h2#603, cible_tx_h2#604, base_persistance_tx_h2#607, base_clim_tn_h2#609, base_clim_tx_h2#610, CASE WHEN (_we0#737 = date_add(date#7, 3)) THEN _we1#738 END AS cible_tn_h3#736, tn#8 AS base_persistance_tn_h3#739, CASE WHEN (_we0#741 = date_add(date#7, 3)) THEN _we1#742 END AS cible_tx_h3#740, tx#9 AS base_persistance_tx_h3#743, least(dayofyear(date_add(date#7, 3)), 365) AS doy_cible#747]
+Input [99]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, cible_tn_h2#600, base_persistance_tn_h2#603, cible_tx_h2#604, base_persistance_tx_h2#607, base_clim_tn_h2#609, base_clim_tx_h2#610, _we0#737, _we1#738, _we0#741, _we1#742]
+
+(74) InMemoryTableScan
+Output [4]: [clim_tn#797, clim_tx#849, doy#853L, ic_id#852]
+Arguments: [clim_tn#797, clim_tx#849, doy#853L, ic_id#852], [isnotnull(ic_id#852), isnotnull(doy#853L)]
+
+(75) InMemoryRelation
+Arguments: [ic_id#852, doy#853L, clim_tn#797, clim_tn_std#798, clim_tx#849, clim_tx_std#850], StorageLevel(disk, memory, deserialized, 1 replicas)
+
+(76) Filter
+Input [4]: [clim_tn#797, clim_tx#849, doy#853L, ic_id#852]
+Condition : (isnotnull(ic_id#852) AND isnotnull(doy#853L))
+
+(77) Project
+Output [4]: [ic_id#852, doy#853L AS doy_cible#744L, clim_tn#797 AS base_clim_tn_h3#745, clim_tx#849 AS base_clim_tx_h3#746]
+Input [4]: [clim_tn#797, clim_tx#849, doy#853L, ic_id#852]
+
+(78) BroadcastExchange
+Input [4]: [ic_id#852, doy_cible#744L, base_clim_tn_h3#745, base_clim_tx_h3#746]
+Arguments: HashedRelationBroadcastMode(List(input[0, string, true], input[1, bigint, true]),false), [plan_id=355]
+
+(79) BroadcastHashJoin
+Left keys [2]: [ic_id#0, cast(doy_cible#747 as bigint)]
+Right keys [2]: [ic_id#852, doy_cible#744L]
+Join type: LeftOuter
+Join condition: None
+
+(80) Project
+Output [101]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, cible_tn_h2#600, base_persistance_tn_h2#603, cible_tx_h2#604, base_persistance_tx_h2#607, base_clim_tn_h2#609, base_clim_tx_h2#610, cible_tn_h3#736, base_persistance_tn_h3#739, cible_tx_h3#740, base_persistance_tx_h3#743, base_clim_tn_h3#745, base_clim_tx_h3#746]
+Input [104]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, cible_tn_h2#600, base_persistance_tn_h2#603, cible_tx_h2#604, base_persistance_tx_h2#607, base_clim_tn_h2#609, base_clim_tx_h2#610, cible_tn_h3#736, base_persistance_tn_h3#739, cible_tx_h3#740, base_persistance_tx_h3#743, doy_cible#747, ic_id#852, doy_cible#744L, base_clim_tn_h3#745, base_clim_tx_h3#746]
+
+(81) Window
+Input [101]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, cible_tn_h2#600, base_persistance_tn_h2#603, cible_tx_h2#604, base_persistance_tx_h2#607, base_clim_tn_h2#609, base_clim_tx_h2#610, cible_tn_h3#736, base_persistance_tn_h3#739, cible_tx_h3#740, base_persistance_tx_h3#743, base_clim_tn_h3#745, base_clim_tx_h3#746]
+Arguments: [lead(date#7, 4, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, 4, 4)) AS _we0#873, lead(tn#8, 4, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, 4, 4)) AS _we1#874, lead(date#7, 4, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, 4, 4)) AS _we0#877, lead(tx#9, 4, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, 4, 4)) AS _we1#878], [ic_id#0], [date#7 ASC NULLS FIRST]
+
+(82) Project
+Output [106]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, cible_tn_h2#600, base_persistance_tn_h2#603, cible_tx_h2#604, base_persistance_tx_h2#607, base_clim_tn_h2#609, base_clim_tx_h2#610, cible_tn_h3#736, base_persistance_tn_h3#739, cible_tx_h3#740, base_persistance_tx_h3#743, base_clim_tn_h3#745, base_clim_tx_h3#746, CASE WHEN (_we0#873 = date_add(date#7, 4)) THEN _we1#874 END AS cible_tn_h4#872, tn#8 AS base_persistance_tn_h4#875, CASE WHEN (_we0#877 = date_add(date#7, 4)) THEN _we1#878 END AS cible_tx_h4#876, tx#9 AS base_persistance_tx_h4#879, least(dayofyear(date_add(date#7, 4)), 365) AS doy_cible#883]
+Input [105]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, cible_tn_h2#600, base_persistance_tn_h2#603, cible_tx_h2#604, base_persistance_tx_h2#607, base_clim_tn_h2#609, base_clim_tx_h2#610, cible_tn_h3#736, base_persistance_tn_h3#739, cible_tx_h3#740, base_persistance_tx_h3#743, base_clim_tn_h3#745, base_clim_tx_h3#746, _we0#873, _we1#874, _we0#877, _we1#878]
+
+(83) InMemoryTableScan
+Output [4]: [clim_tn#933, clim_tx#985, doy#989L, ic_id#988]
+Arguments: [clim_tn#933, clim_tx#985, doy#989L, ic_id#988], [isnotnull(ic_id#988), isnotnull(doy#989L)]
+
+(84) InMemoryRelation
+Arguments: [ic_id#988, doy#989L, clim_tn#933, clim_tn_std#934, clim_tx#985, clim_tx_std#986], StorageLevel(disk, memory, deserialized, 1 replicas)
+
+(85) Filter
+Input [4]: [clim_tn#933, clim_tx#985, doy#989L, ic_id#988]
+Condition : (isnotnull(ic_id#988) AND isnotnull(doy#989L))
+
+(86) Project
+Output [4]: [ic_id#988, doy#989L AS doy_cible#880L, clim_tn#933 AS base_clim_tn_h4#881, clim_tx#985 AS base_clim_tx_h4#882]
+Input [4]: [clim_tn#933, clim_tx#985, doy#989L, ic_id#988]
+
+(87) BroadcastExchange
+Input [4]: [ic_id#988, doy_cible#880L, base_clim_tn_h4#881, base_clim_tx_h4#882]
+Arguments: HashedRelationBroadcastMode(List(input[0, string, true], input[1, bigint, true]),false), [plan_id=361]
+
+(88) BroadcastHashJoin
+Left keys [2]: [ic_id#0, cast(doy_cible#883 as bigint)]
+Right keys [2]: [ic_id#988, doy_cible#880L]
+Join type: LeftOuter
+Join condition: None
+
+(89) Project
+Output [107]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, cible_tn_h2#600, base_persistance_tn_h2#603, cible_tx_h2#604, base_persistance_tx_h2#607, base_clim_tn_h2#609, base_clim_tx_h2#610, cible_tn_h3#736, base_persistance_tn_h3#739, cible_tx_h3#740, base_persistance_tx_h3#743, base_clim_tn_h3#745, base_clim_tx_h3#746, cible_tn_h4#872, base_persistance_tn_h4#875, cible_tx_h4#876, base_persistance_tx_h4#879, base_clim_tn_h4#881, base_clim_tx_h4#882]
+Input [110]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, cible_tn_h2#600, base_persistance_tn_h2#603, cible_tx_h2#604, base_persistance_tx_h2#607, base_clim_tn_h2#609, base_clim_tx_h2#610, cible_tn_h3#736, base_persistance_tn_h3#739, cible_tx_h3#740, base_persistance_tx_h3#743, base_clim_tn_h3#745, base_clim_tx_h3#746, cible_tn_h4#872, base_persistance_tn_h4#875, cible_tx_h4#876, base_persistance_tx_h4#879, doy_cible#883, ic_id#988, doy_cible#880L, base_clim_tn_h4#881, base_clim_tx_h4#882]
+
+(90) Window
+Input [107]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, cible_tn_h2#600, base_persistance_tn_h2#603, cible_tx_h2#604, base_persistance_tx_h2#607, base_clim_tn_h2#609, base_clim_tx_h2#610, cible_tn_h3#736, base_persistance_tn_h3#739, cible_tx_h3#740, base_persistance_tx_h3#743, base_clim_tn_h3#745, base_clim_tx_h3#746, cible_tn_h4#872, base_persistance_tn_h4#875, cible_tx_h4#876, base_persistance_tx_h4#879, base_clim_tn_h4#881, base_clim_tx_h4#882]
+Arguments: [lead(date#7, 5, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, 5, 5)) AS _we0#1009, lead(tn#8, 5, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, 5, 5)) AS _we1#1010, lead(date#7, 5, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, 5, 5)) AS _we0#1013, lead(tx#9, 5, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, 5, 5)) AS _we1#1014], [ic_id#0], [date#7 ASC NULLS FIRST]
+
+(91) Project
+Output [112]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, cible_tn_h2#600, base_persistance_tn_h2#603, cible_tx_h2#604, base_persistance_tx_h2#607, base_clim_tn_h2#609, base_clim_tx_h2#610, cible_tn_h3#736, base_persistance_tn_h3#739, cible_tx_h3#740, base_persistance_tx_h3#743, base_clim_tn_h3#745, base_clim_tx_h3#746, cible_tn_h4#872, base_persistance_tn_h4#875, cible_tx_h4#876, base_persistance_tx_h4#879, base_clim_tn_h4#881, base_clim_tx_h4#882, CASE WHEN (_we0#1009 = date_add(date#7, 5)) THEN _we1#1010 END AS cible_tn_h5#1008, tn#8 AS base_persistance_tn_h5#1011, CASE WHEN (_we0#1013 = date_add(date#7, 5)) THEN _we1#1014 END AS cible_tx_h5#1012, tx#9 AS base_persistance_tx_h5#1015, least(dayofyear(date_add(date#7, 5)), 365) AS doy_cible#1019]
+Input [111]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, cible_tn_h2#600, base_persistance_tn_h2#603, cible_tx_h2#604, base_persistance_tx_h2#607, base_clim_tn_h2#609, base_clim_tx_h2#610, cible_tn_h3#736, base_persistance_tn_h3#739, cible_tx_h3#740, base_persistance_tx_h3#743, base_clim_tn_h3#745, base_clim_tx_h3#746, cible_tn_h4#872, base_persistance_tn_h4#875, cible_tx_h4#876, base_persistance_tx_h4#879, base_clim_tn_h4#881, base_clim_tx_h4#882, _we0#1009, _we1#1010, _we0#1013, _we1#1014]
+
+(92) InMemoryTableScan
+Output [4]: [clim_tn#1069, clim_tx#1121, doy#1125L, ic_id#1124]
+Arguments: [clim_tn#1069, clim_tx#1121, doy#1125L, ic_id#1124], [isnotnull(ic_id#1124), isnotnull(doy#1125L)]
+
+(93) InMemoryRelation
+Arguments: [ic_id#1124, doy#1125L, clim_tn#1069, clim_tn_std#1070, clim_tx#1121, clim_tx_std#1122], StorageLevel(disk, memory, deserialized, 1 replicas)
+
+(94) Filter
+Input [4]: [clim_tn#1069, clim_tx#1121, doy#1125L, ic_id#1124]
+Condition : (isnotnull(ic_id#1124) AND isnotnull(doy#1125L))
+
+(95) Project
+Output [4]: [ic_id#1124, doy#1125L AS doy_cible#1016L, clim_tn#1069 AS base_clim_tn_h5#1017, clim_tx#1121 AS base_clim_tx_h5#1018]
+Input [4]: [clim_tn#1069, clim_tx#1121, doy#1125L, ic_id#1124]
+
+(96) BroadcastExchange
+Input [4]: [ic_id#1124, doy_cible#1016L, base_clim_tn_h5#1017, base_clim_tx_h5#1018]
+Arguments: HashedRelationBroadcastMode(List(input[0, string, true], input[1, bigint, true]),false), [plan_id=367]
+
+(97) BroadcastHashJoin
+Left keys [2]: [ic_id#0, cast(doy_cible#1019 as bigint)]
+Right keys [2]: [ic_id#1124, doy_cible#1016L]
+Join type: LeftOuter
+Join condition: None
+
+(98) Project
+Output [113]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, cible_tn_h2#600, base_persistance_tn_h2#603, cible_tx_h2#604, base_persistance_tx_h2#607, base_clim_tn_h2#609, base_clim_tx_h2#610, cible_tn_h3#736, base_persistance_tn_h3#739, cible_tx_h3#740, base_persistance_tx_h3#743, base_clim_tn_h3#745, base_clim_tx_h3#746, cible_tn_h4#872, base_persistance_tn_h4#875, cible_tx_h4#876, base_persistance_tx_h4#879, base_clim_tn_h4#881, base_clim_tx_h4#882, cible_tn_h5#1008, base_persistance_tn_h5#1011, cible_tx_h5#1012, base_persistance_tx_h5#1015, base_clim_tn_h5#1017, base_clim_tx_h5#1018]
+Input [116]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, cible_tn_h2#600, base_persistance_tn_h2#603, cible_tx_h2#604, base_persistance_tx_h2#607, base_clim_tn_h2#609, base_clim_tx_h2#610, cible_tn_h3#736, base_persistance_tn_h3#739, cible_tx_h3#740, base_persistance_tx_h3#743, base_clim_tn_h3#745, base_clim_tx_h3#746, cible_tn_h4#872, base_persistance_tn_h4#875, cible_tx_h4#876, base_persistance_tx_h4#879, base_clim_tn_h4#881, base_clim_tx_h4#882, cible_tn_h5#1008, base_persistance_tn_h5#1011, cible_tx_h5#1012, base_persistance_tx_h5#1015, doy_cible#1019, ic_id#1124, doy_cible#1016L, base_clim_tn_h5#1017, base_clim_tx_h5#1018]
+
+(99) Window
+Input [113]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, cible_tn_h2#600, base_persistance_tn_h2#603, cible_tx_h2#604, base_persistance_tx_h2#607, base_clim_tn_h2#609, base_clim_tx_h2#610, cible_tn_h3#736, base_persistance_tn_h3#739, cible_tx_h3#740, base_persistance_tx_h3#743, base_clim_tn_h3#745, base_clim_tx_h3#746, cible_tn_h4#872, base_persistance_tn_h4#875, cible_tx_h4#876, base_persistance_tx_h4#879, base_clim_tn_h4#881, base_clim_tx_h4#882, cible_tn_h5#1008, base_persistance_tn_h5#1011, cible_tx_h5#1012, base_persistance_tx_h5#1015, base_clim_tn_h5#1017, base_clim_tx_h5#1018]
+Arguments: [lead(date#7, 6, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, 6, 6)) AS _we0#1145, lead(tn#8, 6, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, 6, 6)) AS _we1#1146, lead(date#7, 6, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, 6, 6)) AS _we0#1149, lead(tx#9, 6, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, 6, 6)) AS _we1#1150], [ic_id#0], [date#7 ASC NULLS FIRST]
+
+(100) Project
+Output [118]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, cible_tn_h2#600, base_persistance_tn_h2#603, cible_tx_h2#604, base_persistance_tx_h2#607, base_clim_tn_h2#609, base_clim_tx_h2#610, cible_tn_h3#736, base_persistance_tn_h3#739, cible_tx_h3#740, base_persistance_tx_h3#743, base_clim_tn_h3#745, base_clim_tx_h3#746, cible_tn_h4#872, base_persistance_tn_h4#875, cible_tx_h4#876, base_persistance_tx_h4#879, base_clim_tn_h4#881, base_clim_tx_h4#882, cible_tn_h5#1008, base_persistance_tn_h5#1011, cible_tx_h5#1012, base_persistance_tx_h5#1015, base_clim_tn_h5#1017, base_clim_tx_h5#1018, CASE WHEN (_we0#1145 = date_add(date#7, 6)) THEN _we1#1146 END AS cible_tn_h6#1144, tn#8 AS base_persistance_tn_h6#1147, CASE WHEN (_we0#1149 = date_add(date#7, 6)) THEN _we1#1150 END AS cible_tx_h6#1148, tx#9 AS base_persistance_tx_h6#1151, least(dayofyear(date_add(date#7, 6)), 365) AS doy_cible#1155]
+Input [117]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, cible_tn_h2#600, base_persistance_tn_h2#603, cible_tx_h2#604, base_persistance_tx_h2#607, base_clim_tn_h2#609, base_clim_tx_h2#610, cible_tn_h3#736, base_persistance_tn_h3#739, cible_tx_h3#740, base_persistance_tx_h3#743, base_clim_tn_h3#745, base_clim_tx_h3#746, cible_tn_h4#872, base_persistance_tn_h4#875, cible_tx_h4#876, base_persistance_tx_h4#879, base_clim_tn_h4#881, base_clim_tx_h4#882, cible_tn_h5#1008, base_persistance_tn_h5#1011, cible_tx_h5#1012, base_persistance_tx_h5#1015, base_clim_tn_h5#1017, base_clim_tx_h5#1018, _we0#1145, _we1#1146, _we0#1149, _we1#1150]
+
+(101) InMemoryTableScan
+Output [4]: [clim_tn#1205, clim_tx#1257, doy#1261L, ic_id#1260]
+Arguments: [clim_tn#1205, clim_tx#1257, doy#1261L, ic_id#1260], [isnotnull(ic_id#1260), isnotnull(doy#1261L)]
+
+(102) InMemoryRelation
+Arguments: [ic_id#1260, doy#1261L, clim_tn#1205, clim_tn_std#1206, clim_tx#1257, clim_tx_std#1258], StorageLevel(disk, memory, deserialized, 1 replicas)
+
+(103) Filter
+Input [4]: [clim_tn#1205, clim_tx#1257, doy#1261L, ic_id#1260]
+Condition : (isnotnull(ic_id#1260) AND isnotnull(doy#1261L))
+
+(104) Project
+Output [4]: [ic_id#1260, doy#1261L AS doy_cible#1152L, clim_tn#1205 AS base_clim_tn_h6#1153, clim_tx#1257 AS base_clim_tx_h6#1154]
+Input [4]: [clim_tn#1205, clim_tx#1257, doy#1261L, ic_id#1260]
+
+(105) BroadcastExchange
+Input [4]: [ic_id#1260, doy_cible#1152L, base_clim_tn_h6#1153, base_clim_tx_h6#1154]
+Arguments: HashedRelationBroadcastMode(List(input[0, string, true], input[1, bigint, true]),false), [plan_id=373]
+
+(106) BroadcastHashJoin
+Left keys [2]: [ic_id#0, cast(doy_cible#1155 as bigint)]
+Right keys [2]: [ic_id#1260, doy_cible#1152L]
+Join type: LeftOuter
+Join condition: None
+
+(107) Project
+Output [119]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, cible_tn_h2#600, base_persistance_tn_h2#603, cible_tx_h2#604, base_persistance_tx_h2#607, base_clim_tn_h2#609, base_clim_tx_h2#610, cible_tn_h3#736, base_persistance_tn_h3#739, cible_tx_h3#740, base_persistance_tx_h3#743, base_clim_tn_h3#745, base_clim_tx_h3#746, cible_tn_h4#872, base_persistance_tn_h4#875, cible_tx_h4#876, base_persistance_tx_h4#879, base_clim_tn_h4#881, base_clim_tx_h4#882, cible_tn_h5#1008, base_persistance_tn_h5#1011, cible_tx_h5#1012, base_persistance_tx_h5#1015, base_clim_tn_h5#1017, base_clim_tx_h5#1018, cible_tn_h6#1144, base_persistance_tn_h6#1147, cible_tx_h6#1148, base_persistance_tx_h6#1151, base_clim_tn_h6#1153, base_clim_tx_h6#1154]
+Input [122]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, cible_tn_h2#600, base_persistance_tn_h2#603, cible_tx_h2#604, base_persistance_tx_h2#607, base_clim_tn_h2#609, base_clim_tx_h2#610, cible_tn_h3#736, base_persistance_tn_h3#739, cible_tx_h3#740, base_persistance_tx_h3#743, base_clim_tn_h3#745, base_clim_tx_h3#746, cible_tn_h4#872, base_persistance_tn_h4#875, cible_tx_h4#876, base_persistance_tx_h4#879, base_clim_tn_h4#881, base_clim_tx_h4#882, cible_tn_h5#1008, base_persistance_tn_h5#1011, cible_tx_h5#1012, base_persistance_tx_h5#1015, base_clim_tn_h5#1017, base_clim_tx_h5#1018, cible_tn_h6#1144, base_persistance_tn_h6#1147, cible_tx_h6#1148, base_persistance_tx_h6#1151, doy_cible#1155, ic_id#1260, doy_cible#1152L, base_clim_tn_h6#1153, base_clim_tx_h6#1154]
+
+(108) Window
+Input [119]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, cible_tn_h2#600, base_persistance_tn_h2#603, cible_tx_h2#604, base_persistance_tx_h2#607, base_clim_tn_h2#609, base_clim_tx_h2#610, cible_tn_h3#736, base_persistance_tn_h3#739, cible_tx_h3#740, base_persistance_tx_h3#743, base_clim_tn_h3#745, base_clim_tx_h3#746, cible_tn_h4#872, base_persistance_tn_h4#875, cible_tx_h4#876, base_persistance_tx_h4#879, base_clim_tn_h4#881, base_clim_tx_h4#882, cible_tn_h5#1008, base_persistance_tn_h5#1011, cible_tx_h5#1012, base_persistance_tx_h5#1015, base_clim_tn_h5#1017, base_clim_tx_h5#1018, cible_tn_h6#1144, base_persistance_tn_h6#1147, cible_tx_h6#1148, base_persistance_tx_h6#1151, base_clim_tn_h6#1153, base_clim_tx_h6#1154]
+Arguments: [lead(date#7, 7, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, 7, 7)) AS _we0#1281, lead(tn#8, 7, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, 7, 7)) AS _we1#1282, lead(date#7, 7, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, 7, 7)) AS _we0#1285, lead(tx#9, 7, null) windowspecdefinition(ic_id#0, date#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, 7, 7)) AS _we1#1286], [ic_id#0], [date#7 ASC NULLS FIRST]
+
+(109) Project
+Output [124]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, cible_tn_h2#600, base_persistance_tn_h2#603, cible_tx_h2#604, base_persistance_tx_h2#607, base_clim_tn_h2#609, base_clim_tx_h2#610, cible_tn_h3#736, base_persistance_tn_h3#739, cible_tx_h3#740, base_persistance_tx_h3#743, base_clim_tn_h3#745, base_clim_tx_h3#746, cible_tn_h4#872, base_persistance_tn_h4#875, cible_tx_h4#876, base_persistance_tx_h4#879, base_clim_tn_h4#881, base_clim_tx_h4#882, cible_tn_h5#1008, base_persistance_tn_h5#1011, cible_tx_h5#1012, base_persistance_tx_h5#1015, base_clim_tn_h5#1017, base_clim_tx_h5#1018, cible_tn_h6#1144, base_persistance_tn_h6#1147, cible_tx_h6#1148, base_persistance_tx_h6#1151, base_clim_tn_h6#1153, base_clim_tx_h6#1154, CASE WHEN (_we0#1281 = date_add(date#7, 7)) THEN _we1#1282 END AS cible_tn_h7#1280, tn#8 AS base_persistance_tn_h7#1283, CASE WHEN (_we0#1285 = date_add(date#7, 7)) THEN _we1#1286 END AS cible_tx_h7#1284, tx#9 AS base_persistance_tx_h7#1287, least(dayofyear(date_add(date#7, 7)), 365) AS doy_cible#1291]
+Input [123]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, cible_tn_h2#600, base_persistance_tn_h2#603, cible_tx_h2#604, base_persistance_tx_h2#607, base_clim_tn_h2#609, base_clim_tx_h2#610, cible_tn_h3#736, base_persistance_tn_h3#739, cible_tx_h3#740, base_persistance_tx_h3#743, base_clim_tn_h3#745, base_clim_tx_h3#746, cible_tn_h4#872, base_persistance_tn_h4#875, cible_tx_h4#876, base_persistance_tx_h4#879, base_clim_tn_h4#881, base_clim_tx_h4#882, cible_tn_h5#1008, base_persistance_tn_h5#1011, cible_tx_h5#1012, base_persistance_tx_h5#1015, base_clim_tn_h5#1017, base_clim_tx_h5#1018, cible_tn_h6#1144, base_persistance_tn_h6#1147, cible_tx_h6#1148, base_persistance_tx_h6#1151, base_clim_tn_h6#1153, base_clim_tx_h6#1154, _we0#1281, _we1#1282, _we0#1285, _we1#1286]
+
+(110) InMemoryTableScan
+Output [4]: [clim_tn#1341, clim_tx#1393, doy#1397L, ic_id#1396]
+Arguments: [clim_tn#1341, clim_tx#1393, doy#1397L, ic_id#1396], [isnotnull(ic_id#1396), isnotnull(doy#1397L)]
+
+(111) InMemoryRelation
+Arguments: [ic_id#1396, doy#1397L, clim_tn#1341, clim_tn_std#1342, clim_tx#1393, clim_tx_std#1394], StorageLevel(disk, memory, deserialized, 1 replicas)
+
+(112) Filter
+Input [4]: [clim_tn#1341, clim_tx#1393, doy#1397L, ic_id#1396]
+Condition : (isnotnull(ic_id#1396) AND isnotnull(doy#1397L))
+
+(113) Project
+Output [4]: [ic_id#1396, doy#1397L AS doy_cible#1288L, clim_tn#1341 AS base_clim_tn_h7#1289, clim_tx#1393 AS base_clim_tx_h7#1290]
+Input [4]: [clim_tn#1341, clim_tx#1393, doy#1397L, ic_id#1396]
+
+(114) BroadcastExchange
+Input [4]: [ic_id#1396, doy_cible#1288L, base_clim_tn_h7#1289, base_clim_tx_h7#1290]
+Arguments: HashedRelationBroadcastMode(List(input[0, string, true], input[1, bigint, true]),false), [plan_id=379]
+
+(115) BroadcastHashJoin
+Left keys [2]: [ic_id#0, cast(doy_cible#1291 as bigint)]
+Right keys [2]: [ic_id#1396, doy_cible#1288L]
+Join type: LeftOuter
+Join condition: None
+
+(116) Project
+Output [126]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, cible_tn_h2#600, base_persistance_tn_h2#603, cible_tx_h2#604, base_persistance_tx_h2#607, base_clim_tn_h2#609, base_clim_tx_h2#610, cible_tn_h3#736, base_persistance_tn_h3#739, cible_tx_h3#740, base_persistance_tx_h3#743, base_clim_tn_h3#745, base_clim_tx_h3#746, cible_tn_h4#872, base_persistance_tn_h4#875, cible_tx_h4#876, base_persistance_tx_h4#879, base_clim_tn_h4#881, base_clim_tx_h4#882, cible_tn_h5#1008, base_persistance_tn_h5#1011, cible_tx_h5#1012, base_persistance_tx_h5#1015, base_clim_tn_h5#1017, base_clim_tx_h5#1018, cible_tn_h6#1144, base_persistance_tn_h6#1147, cible_tx_h6#1148, base_persistance_tx_h6#1151, base_clim_tn_h6#1153, base_clim_tx_h6#1154, cible_tn_h7#1280, base_persistance_tn_h7#1283, cible_tx_h7#1284, base_persistance_tx_h7#1287, base_clim_tn_h7#1289, base_clim_tx_h7#1290, CASE WHEN (date#7 <= 2021-12-24) THEN train WHEN (date#7 <= 2021-12-31) THEN purge WHEN (date#7 <= 2023-12-24) THEN valid WHEN (date#7 <= 2023-12-31) THEN purge ELSE test END AS split#1416]
+Input [128]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, cible_tn_h2#600, base_persistance_tn_h2#603, cible_tx_h2#604, base_persistance_tx_h2#607, base_clim_tn_h2#609, base_clim_tx_h2#610, cible_tn_h3#736, base_persistance_tn_h3#739, cible_tx_h3#740, base_persistance_tx_h3#743, base_clim_tn_h3#745, base_clim_tx_h3#746, cible_tn_h4#872, base_persistance_tn_h4#875, cible_tx_h4#876, base_persistance_tx_h4#879, base_clim_tn_h4#881, base_clim_tx_h4#882, cible_tn_h5#1008, base_persistance_tn_h5#1011, cible_tx_h5#1012, base_persistance_tx_h5#1015, base_clim_tn_h5#1017, base_clim_tx_h5#1018, cible_tn_h6#1144, base_persistance_tn_h6#1147, cible_tx_h6#1148, base_persistance_tx_h6#1151, base_clim_tn_h6#1153, base_clim_tx_h6#1154, cible_tn_h7#1280, base_persistance_tn_h7#1283, cible_tx_h7#1284, base_persistance_tx_h7#1287, doy_cible#1291, ic_id#1396, doy_cible#1288L, base_clim_tn_h7#1289, base_clim_tx_h7#1290]
+
+(117) AdaptiveSparkPlan
+Output [126]: [ic_id#0, libelle#2, latitude#3, longitude#4, altitude#5L, date#7, tn#8, tx#9, tm#10, rr#11, flag_partiel#30, clim_tn#64, clim_tn_std#65, clim_tx#100, clim_tx_std#101, tn_anom#275, tx_anom#276, amplitude#277, tn_lag1#278, tn_lag2#279, tn_lag3#280, tn_lag4#281, tn_lag5#282, tn_lag6#283, tn_lag7#284, tn_lag14#285, tn_lag21#286, tn_lag365#287, tx_lag1#288, tx_lag2#289, tx_lag3#290, tx_lag4#291, tx_lag5#292, tx_lag6#293, tx_lag7#294, tx_lag14#295, tx_lag21#296, tx_lag365#297, tm_lag1#298, tm_lag2#299, tm_lag3#300, tm_lag4#301, tm_lag5#302, tm_lag6#303, tm_lag7#304, tm_lag14#305, tm_lag21#306, tm_lag365#307, rr_lag1#308, rr_lag2#309, rr_lag3#310, rr_lag4#311, rr_lag5#312, rr_lag6#313, rr_lag7#314, tn_diff1#315, tx_diff1#317, tn_moy3#319, tx_moy3#324, tm_moy3#329, tm_std3#334, rr_cumul3#347, tn_moy7#352, tx_moy7#357, tm_moy7#362, tm_std7#367, rr_cumul7#380, tn_moy14#385, tx_moy14#390, tm_moy14#395, tm_std14#400, rr_cumul14#413, tn_moy30#418, tx_moy30#423, tm_moy30#428, tm_std30#433, rr_cumul30#446, jours_secs_7#452, tn_anom_nationale#457, tx_anom_nationale#459, doy_sin#461, doy_cos#462, mois#463, cible_tn_h1#464, base_persistance_tn_h1#467, cible_tx_h1#468, base_persistance_tx_h1#471, base_clim_tn_h1#473, base_clim_tx_h1#474, cible_tn_h2#600, base_persistance_tn_h2#603, cible_tx_h2#604, base_persistance_tx_h2#607, base_clim_tn_h2#609, base_clim_tx_h2#610, cible_tn_h3#736, base_persistance_tn_h3#739, cible_tx_h3#740, base_persistance_tx_h3#743, base_clim_tn_h3#745, base_clim_tx_h3#746, cible_tn_h4#872, base_persistance_tn_h4#875, cible_tx_h4#876, base_persistance_tx_h4#879, base_clim_tn_h4#881, base_clim_tx_h4#882, cible_tn_h5#1008, base_persistance_tn_h5#1011, cible_tx_h5#1012, base_persistance_tx_h5#1015, base_clim_tn_h5#1017, base_clim_tx_h5#1018, cible_tn_h6#1144, base_persistance_tn_h6#1147, cible_tx_h6#1148, base_persistance_tx_h6#1151, base_clim_tn_h6#1153, base_clim_tx_h6#1154, cible_tn_h7#1280, base_persistance_tn_h7#1283, cible_tx_h7#1284, base_persistance_tx_h7#1287, base_clim_tn_h7#1289, base_clim_tx_h7#1290, split#1416]
+Arguments: isFinalPlan=false
+
+
+
+(≈ 59 Exchange / shuffles dans le plan exécuté)
+✓ Gold Spark : data/gold/jeu_prevision_spark
+  purge  2021-12-25 → 2023-12-31  n=210
+  test   2024-01-01 → 2026-09-29  n=15045
+  train  2000-01-01 → 2021-12-24  n=120435
+  valid  2022-01-01 → 2023-12-24  n=10845

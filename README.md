@@ -17,6 +17,32 @@ Source : API ouverte Infoclimat — https://portail.chom.engineering (doc) · ht
 
 Les data contracts (format ODCS) sont dans `contracts/`.
 
+## Architecture lakehouse PySpark (séances S1-S3)
+
+En plus du pipeline pandas ci-dessus (conservé comme **implémentation de référence / étalon**), une
+implémentation **PySpark distribuée** couvre les exigences « Architecture Big Data » du cours. Les deux
+produisent une sortie **identique au bit près** (test d'équivalence `src/spark/equivalence.py`).
+
+| Élément | Script | Rôle |
+|---|---|---|
+| Zone brute immuable | `src/promote_to_raw.py` | `data/raw/` + checksums SHA-256, **batch log** `data/_meta/batchs.parquet`, ingestion idempotente |
+| Bronze Spark | `src/spark/ingest_bronze_spark.py` | Parquet texte, colonnes techniques, partition `_batch_id`, overwrite dynamique |
+| Silver Spark | `src/spark/build_silver_spark.py` | schéma canonique, `qc_flag`, dédup déterministe, **quarantaine**, réconciliation par batch |
+| Gold Spark | `src/spark/build_gold_spark.py` | features/cibles, fenêtres strictement passées (anti-fuite), partition `split=`, `--plan` (execution plan) |
+| Équivalence | `src/spark/equivalence.py` | Spark == pandas (tolérance explicite) |
+| Mesure 1/N workers | `bench/run_bench.py`, `bench/plot_bench.py` | durée, shuffle, spill, **speedup/efficiency/coût vCPU·h** |
+| Exploitation | `src/spark/exploitation.py` | idempotence, correction/backfill, recovery (`src/spark/recovery.py`) |
+| Lineage | `src/spark/lineage.py` | events **OpenLineage** Bronze→Silver→Gold (`data/_meta/lineage/`) |
+
+```bash
+pip install -r requirements.txt     # inclut pyspark
+./run_lakehouse.sh                  # raw -> Bronze -> Silver -> Gold -> équivalence -> lineage -> exploitation
+```
+
+Spark 4.x exige **Java 17 ou 21** ; `src/spark/session.py` sélectionne automatiquement un JDK compatible.
+Les livrables écrits (note de cadrage, schéma d'architecture, gouvernance, tableau d'expériences,
+execution plan annoté) sont dans `docs/`.
+
 ## Lancer l'étape 1 (Bronze)
 
 ```bash

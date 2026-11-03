@@ -1,6 +1,7 @@
 pandas>=2.0
 numpy
 pyarrow
+pyspark>=4.0        # pipeline lakehouse distribué (nécessite Java 17 ou 21)
 scikit-learn
 lightgbm
 matplotlib
