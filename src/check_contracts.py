@@ -96,7 +96,8 @@ def verifier_contrat(chemin: Path, con: duckdb.DuckDBPyConnection | None = None)
             if q.get("type") != "sql":
                 ajout(nom, desc, "DELEGUE", "vérifié par les tests pytest")
                 continue
-            ligne = con.execute(q["query"]).fetchone()
+            rows = con.execute(q["query"]).fetchall()   # fetchall : consomme tout le résultat
+            ligne = rows[0] if rows else None            # (sinon DuckDB garde la connexion « in use »)
             valeur = 0 if ligne is None or ligne[0] is None else ligne[0]  # aucune ligne = aucun cas trouvé
             comp = next((k for k in COMPARATEURS if k in q), None)
             ok = COMPARATEURS[comp](valeur, q[comp]) if comp else True
