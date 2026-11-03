@@ -1,0 +1,41 @@
+name: CI
+
+# Contrats testés en CI (S1 p34) + suite pytest, à chaque push et pull request.
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Spark 4.x exige Java 17 ou 21 (setup-java positionne JAVA_HOME ; session.py le respecte hors macOS)
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Installer les dépendances
+        run: pip install -r requirements.txt
+
+      - name: Suite de tests (pytest)
+        # Les données (data/) ne sont pas versionnées : les tests qui en dépendent se skippent
+        # automatiquement (conftest.besoin). Les tests sur données synthétiques et Spark s'exécutent.
+        run: python -m pytest -v
+
+      - name: Data contracts ODCS (si données présentes)
+        run: |
+          if [ -f data/gold/jeu_prevision.parquet ]; then
+            python3 src/check_contracts.py
+          else
+            echo "data/ non versionné (gitignoré) — les data contracts se vérifient localement"
+            echo "après ./run_pipeline.sh (pandas) ou ./run_lakehouse.sh (Spark)."
+          fi
