@@ -1,0 +1,7 @@
+version,workers,duree_med_s,shuffle_read_mo,spill_mem_mo,vcpu_h,speedup,efficiency
+initiale,1,80.06,108.1,104.9,0.0222,1.0,1.0
+initiale,2,48.29,110.1,0.0,0.0268,1.66,0.83
+initiale,4,31.62,112.4,0.0,0.0351,2.53,0.63
+initiale,8,29.82,114.4,0.0,0.0663,2.68,0.34
+optimisee,1,69.95,91.4,0.0,0.0194,1.0,1.0
+optimisee,8,26.65,91.4,0.0,0.0592,2.62,0.33
